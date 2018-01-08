@@ -5,12 +5,38 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "semantic-ui-react": "^0.77.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "precommit": "lint-staged && flow check",
+    "lint": "eslint \"src/**/*.js\" \"src/**/*.jsx\" \"flow-typed/*.js\"",
+    "flow": "flow check"
+  },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.15.0",
+    "flow-bin": "^0.63.1",
+    "lint-staged": "^6.0.0",
+    "power-assert": "^1.4.4",
+    "prettier": "^1.9.2",
+    "prettier-eslint": "^8.7.1",
+    "prettier-eslint-cli": "^4.7.0",
+    "prop-types": "^15.6.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier-eslint --write",
+      "eslint",
+      "git add"
+    ]
   }
 }
