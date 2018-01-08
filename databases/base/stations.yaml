@@ -1,0 +1,85 @@
+---
+kokusaikaikan:
+  address: ""
+  lat: 35.062942
+  long: 135.785216
+  name: "国際会館"
+matsugasaki:
+  address: ""
+  lat: 35.051657
+  long: 135.777114
+  name: "松ヶ崎"
+kitayama:
+  address: ""
+  lat: 35.051277
+  long: 135.766329
+  name: "北山"
+kitaoji:
+  address: ""
+  lat: 35.044972
+  long: 135.75866
+kuramaguchi:
+  address: ""
+  lat: 35.037153
+  long: 135.759291
+  name: "鞍馬口"
+imadegawa:
+  address: ""
+  lat: 35.030168
+  long: 135.759385
+  name: "今出川"
+marutamachi:
+  address: ""
+  lat: 35.016572
+  long: 135.75953
+  name: "丸太町"
+karasuma:
+  address: ""
+  lat: 35.010517
+  long: 135.759638
+  name: "烏丸御池"
+shijo:
+  address: ""
+  lat: 35.002301
+  long: 135.759666
+  name: "四条"
+gojo:
+  address: ""
+  lat: 34.995171
+  long: 135.759739
+  name: "五条"
+kyoto:
+  address: ""
+  lat: 34.985458
+  long: 135.757755
+  name: "京都"
+kujo:
+  address: ""
+  lat: 34.979062
+  long: 135.759664
+  name: "九条"
+jujo:
+  address: ""
+  lat: 34.973998
+  long: 135.752448
+  name: "十条"
+kuinabashi:
+  address: ""
+  lat: 34.962674
+  long: 135.757441
+  name: "くいな橋"
+takeda:
+  address: ""
+  lat: 34.956894
+  long: 135.756116
+  name: "竹田"
+tanabe:
+  address: ""
+  lat: 34.820856
+  long: 135.772872
+  name: "新田辺"
+nara:
+  address: ""
+  lat: 34.68444
+  long: 135.827415
+  name: "近鉄奈良"

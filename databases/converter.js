@@ -6,7 +6,7 @@ const columns = {
   '行先（終着）': 'distination',
   '始発': 'from',
   '国際会館': 'kokusaikaikan',
-  '松ヶ崎': 'matsudasaki',
+  '松ヶ崎': 'matsugasaki',
   '北山': 'kitayama',
   '北大路': 'kitaoji',
   '鞍馬口': 'kuramaguchi',
