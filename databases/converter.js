@@ -34,28 +34,33 @@ function parseColumns(line) {
 
 function parseCsv(path) {
   console.log(`Convert csv to JSON in ${path}`)
-  return new Promise(resolve => {
-    const parser = csv.parse({columns: parseColumns})
-    const rs = fs.createReadStream('./base/tn020100_text.csv')
-      .pipe(iconv.decodeStream('SJIS'))
-      .pipe(iconv.encodeStream('UTF-8'))
-      .pipe(parser)
-      const timetables = []
-      parser.on('readable', () => {
-        while (data = parser.read()) {
-          timetables.push(data)
-        }
-      })
-      parser.on('end', () => {
-        createJsonFile(path, timetables)
-        resolve(true)
-      })
+  return new Promise((resolve, reject) => {
+    try {
+      const parser = csv.parse({columns: parseColumns})
+      const rs = fs.createReadStream(`./base/${path}`)
+        .pipe(iconv.decodeStream('SJIS'))
+        .pipe(iconv.encodeStream('UTF-8'))
+        .pipe(parser)
+        const timetables = []
+        parser.on('readable', () => {
+          while (data = parser.read()) {
+            timetables.push(data)
+          }
+        })
+        parser.on('end', () => {
+          createJsonFile(path, timetables)
+          resolve(true)
+        })
+      } catch (e) {
+        console.log(e)
+        reject(e)
+      }
   })
 }
 
 function createJsonFile(path, data) {
   const fileName = path.split('.csv')[0]
-  fs.writeFile(`./json/${ fileName}.json`, JSON.stringify(data, null, '    '));
+  fs.writeFile(`./json/${fileName}.json`, JSON.stringify(data, null, '    '));
   return true
 }
 
