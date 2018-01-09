@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
 
 // Semantic UI
-import { Divider, Header, Container, Grid } from 'semantic-ui-react'
-
+import { Divider, Header, Container, Grid } from "semantic-ui-react";
 
 const AppHeader = props => {
   return (
@@ -12,9 +11,7 @@ const AppHeader = props => {
           <Grid.Row stretched>
             <Grid.Column>
               <Header as="h1">
-                <Header.Content>
-                  京都市営地下鉄発車ナビ
-                </Header.Content>
+                <Header.Content>京都市営地下鉄発車ナビ</Header.Content>
               </Header>
               <p>京都市営地下鉄烏丸線の発車時刻を表示します</p>
             </Grid.Column>
@@ -23,7 +20,7 @@ const AppHeader = props => {
       </Container>
       <Divider />
     </div>
-  )
-}
+  );
+};
 
-export default AppHeader
+export default AppHeader;

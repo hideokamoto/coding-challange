@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 // Semantic UI
-import { Divider, Container } from 'semantic-ui-react'
+import { Divider, Container } from "semantic-ui-react";
 
 // Components
 
@@ -13,7 +13,7 @@ const AppFooter = props => {
         <p>Sample</p>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default AppFooter
+export default AppFooter;

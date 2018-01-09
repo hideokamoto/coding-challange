@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit": "lint-staged && flow check",
-    "format": "prettier-eslint --write \"src/**/*.js\" \"src/**/*.jsx\"",
-    "lint": "eslint \"src/**/*.js\" \"src/**/*.jsx\" \"flow-typed/*.js\"",
+    "format": "prettier-eslint --write \"frontend/**/*.js\" \"frontend/**/*.jsx\"",
+    "lint": "eslint \"frontend/**/*.js\" \"frontend/**/*.jsx\" \"flow-typed/*.js\"",
     "flow": "flow check"
   },
   "keywords": [],
