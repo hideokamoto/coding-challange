@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import moment from 'moment';
+import moment from "moment";
 
 // semantic ui
-import { Segment, Statistic, Header, Divider, Container, Grid } from "semantic-ui-react";
+import {
+  Segment,
+  Statistic,
+  Header,
+  Divider,
+  Container,
+  Grid
+} from "semantic-ui-react";
 import "./App.css";
 
 // component
 import AppLayouts from "./components/layouts/index";
-import SimpleMap from './components/maps/stationmap';
+import SimpleMap from "./components/maps/stationmap";
 
 class App extends Component {
   constructor(props) {
@@ -35,22 +42,20 @@ class App extends Component {
     );
   }
   render() {
-    const upline = moment().format("HH:mm")
-    const downline = moment().format("HH:mm")
+    const upline = moment().format("HH:mm");
+    const downline = moment().format("HH:mm");
     return (
       <AppLayouts>
         <Container>
           <Grid columns={2} celled="internally">
             <Grid.Row>
               <Grid.Column>
-                <Header as="h2">
-                  近くの烏丸線の駅を探す
-                </Header>
-                <button onClick={this.handleGetLatLong}>位置情報から探す</button>
+                <Header as="h2">近くの烏丸線の駅を探す</Header>
+                <button onClick={this.handleGetLatLong}>
+                  位置情報から探す
+                </button>
                 <Divider />
-                <Header as="h2">
-                  発車予定時刻
-                </Header>
+                <Header as="h2">発車予定時刻</Header>
                 <Segment inverted>
                   <Statistic.Group inverted>
                     <Statistic>
