@@ -1,33 +1,13 @@
 import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
+import moment from 'moment';
+
+// semantic ui
+import { Segment, Statistic, Header, Divider, Container, Grid } from "semantic-ui-react";
 import "./App.css";
 
 // component
 import AppLayouts from "./components/layouts/index";
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-class SimpleMap extends Component {
-  static defaultProps = {
-    zoom: 11
-  };
-
-  render() {
-    if (this.props.timestamp === 0) return <div />;
-    return (
-      <GoogleMapReact
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
-      >
-        <AnyReactComponent
-          lat={this.props.center.lat}
-          lng={this.props.center.lng}
-          text={"Your are here"}
-        />
-      </GoogleMapReact>
-    );
-  }
-}
+import SimpleMap from './components/maps/stationmap';
 
 class App extends Component {
   constructor(props) {
@@ -55,15 +35,46 @@ class App extends Component {
     );
   }
   render() {
+    const upline = moment().format("HH:mm")
+    const downline = moment().format("HH:mm")
     return (
       <AppLayouts>
-        <button onClick={this.handleGetLatLong}>Get Geo</button>
-        <div style={{ height: "500px" }}>
-          <SimpleMap
-            center={{ lat: this.state.lat, lng: this.state.long }}
-            timestamp={this.state.timestamp}
-          />
-        </div>
+        <Container>
+          <Grid columns={2} celled="internally">
+            <Grid.Row>
+              <Grid.Column>
+                <Header as="h2">
+                  近くの烏丸線の駅を探す
+                </Header>
+                <button onClick={this.handleGetLatLong}>位置情報から探す</button>
+                <Divider />
+                <Header as="h2">
+                  発車予定時刻
+                </Header>
+                <Segment inverted>
+                  <Statistic.Group inverted>
+                    <Statistic>
+                      <Statistic.Label>北大路・国際会館方面</Statistic.Label>
+                      <Statistic.Value>{upline}</Statistic.Value>
+                    </Statistic>
+                    <Statistic>
+                      <Statistic.Label>京都・竹田方面</Statistic.Label>
+                      <Statistic.Value>{downline}</Statistic.Value>
+                    </Statistic>
+                  </Statistic.Group>
+                </Segment>
+              </Grid.Column>
+              <Grid.Column>
+                <div style={{ height: "500px" }}>
+                  <SimpleMap
+                    center={{ lat: this.state.lat, lng: this.state.long }}
+                    timestamp={this.state.timestamp}
+                  />
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
       </AppLayouts>
     );
   }
