@@ -15,10 +15,8 @@ const AppHeader = props => {
                 <Header.Content>
                   京都市営地下鉄発車ナビ
                 </Header.Content>
-                <Header.Subheader>
-                  京都市営地下鉄烏丸線の発車時刻を表示します
-                </Header.Subheader>
               </Header>
+              <p>京都市営地下鉄烏丸線の発車時刻を表示します</p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
