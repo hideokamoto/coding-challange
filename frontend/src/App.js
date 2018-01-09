@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
-import logo from './logo.svg'
 import './App.css'
+
+// component
+import AppLayouts from './components/layouts/index'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class SimpleMap extends Component {
   static defaultProps = {
-    center: { lat: 59.95, lng: 30.33 },
     zoom: 11
   }
 
   render () {
+    if (this.props.timestamp === 0) return <div />
     return (
       <GoogleMapReact
         defaultCenter={this.props.center}
         defaultZoom={this.props.zoom}
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text={'Kreyser Avrora'}
+          lat={this.props.center.lat}
+          lng={this.props.center.lng}
+          text={'Your are here'}
         />
       </GoogleMapReact>
     )
@@ -28,20 +30,36 @@ class SimpleMap extends Component {
 }
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.handleGetLatLong = this.handleGetLatLong.bind(this)
+    this.state = {
+      lat: 59.95,
+      long: 30.33,
+      timestamp: 0,
+    }
+  }
+  handleGetLatLong() {
+    navigator.geolocation.getCurrentPosition(position => {
+      const { coords, timestamp } = position ;
+      this.setState({
+        lat: coords.latitude,
+        long: coords.longitude,
+        timestamp,
+      })
+    },
+    function(err) {
+      console.log(err)
+    })
+  }
   render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+      <AppLayouts>
+        <button onClick={this.handleGetLatLong}>Get Geo</button>
         <div style={{ height: '500px' }}>
-          <SimpleMap />
+          <SimpleMap center={{ lat: this.state.lat, lng: this.state.long }} timestamp={this.state.timestamp} />
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      </AppLayouts>
     )
   }
 }
