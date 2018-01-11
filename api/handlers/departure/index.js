@@ -1,8 +1,8 @@
 module.exports = {
   GET: {
-    '/test': event => {
+    '/departure/{lineName}/{station}': event => {
       return {
-        message: 'test',
+        message: 'search stations',
         event
       }
     }

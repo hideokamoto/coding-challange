@@ -1,8 +1,14 @@
 module.exports = {
   GET: {
-    '/test1': event => {
+    '/station/{name}': event => {
       return {
-        message: 'test1',
+        message: 'get station',
+        event
+      }
+    },
+    '/station/search': event => {
+      return {
+        message: 'search station',
         event
       }
     }
