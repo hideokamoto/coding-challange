@@ -14,12 +14,16 @@ import {
 } from 'semantic-ui-react'
 import './App.css'
 
+// container
+import ContSelectDepartureStation from './containers/SelectDepartureStation'
+
 // component
 import AppLayouts from './components/layouts/index'
 import SimpleMap from './components/maps/stationmap'
 
 // Store
 import { configureStore } from './redux/stores/index'
+
 const initialState = {}
 const store = configureStore(initialState)
 
@@ -62,6 +66,7 @@ class App extends Component {
                   <button onClick={this.handleGetLatLong}>
                     位置情報から探す
                   </button>
+                  <ContSelectDepartureStation />
                   <Divider />
                   <Header as="h2">発車予定時刻</Header>
                   <Segment inverted>
