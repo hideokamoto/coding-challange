@@ -1,6 +1,6 @@
 
-resource "aws_dynamodb_table" "DepartureWeekday" {
-  name           = "DepartureWeekday"
+resource "aws_dynamodb_table" "DepartureWeekday-outbound" {
+  name           = "DepartureWeekday-outbound"
   read_capacity  = 10
   write_capacity = 5
   hash_key       = "station_name"
@@ -11,28 +11,15 @@ resource "aws_dynamodb_table" "DepartureWeekday" {
   }
   attribute {
     name = "departure_timestamp"
-    type = "S"
-  }
-  attribute {
-    name = "line_type"
-    type = "S"
-  }
-  global_secondary_index {
-    name               = "station_name-line_type-index"
-    hash_key           = "station_name"
-    range_key          = "line_type"
-    write_capacity     = 5
-    read_capacity      = 5
-    projection_type    = "ALL"
-    non_key_attributes = []
+    type = "N"
   }
   tags {
     Usage = "subway-kyoto"
   }
 }
 
-resource "aws_dynamodb_table" "DepartureHoliday" {
-  name           = "DepartureHoliday"
+resource "aws_dynamodb_table" "DepartureWeekday-inbound" {
+  name           = "DepartureWeekday-inbound"
   read_capacity  = 10
   write_capacity = 5
   hash_key       = "station_name"
@@ -43,20 +30,45 @@ resource "aws_dynamodb_table" "DepartureHoliday" {
   }
   attribute {
     name = "departure_timestamp"
+    type = "N"
+  }
+  tags {
+    Usage = "subway-kyoto"
+  }
+}
+
+resource "aws_dynamodb_table" "DepartureHoliday-outbound" {
+  name           = "DepartureHoliday-outbound"
+  read_capacity  = 10
+  write_capacity = 5
+  hash_key       = "station_name"
+  range_key      = "departure_timestamp"
+  attribute {
+    name = "station_name"
     type = "S"
   }
   attribute {
-    name = "line_type"
+    name = "departure_timestamp"
+    type = "N"
+  }
+  tags {
+    Usage = "subway-kyoto"
+  }
+}
+
+resource "aws_dynamodb_table" "DepartureHoliday-inbound" {
+  name           = "DepartureHoliday-inbound"
+  read_capacity  = 10
+  write_capacity = 5
+  hash_key       = "station_name"
+  range_key      = "departure_timestamp"
+  attribute {
+    name = "station_name"
     type = "S"
   }
-  global_secondary_index {
-    name               = "station_name-line_type-index"
-    hash_key           = "station_name"
-    range_key          = "line_type"
-    write_capacity     = 5
-    read_capacity      = 5
-    projection_type    = "ALL"
-    non_key_attributes = []
+  attribute {
+    name = "departure_timestamp"
+    type = "N"
   }
   tags {
     Usage = "subway-kyoto"

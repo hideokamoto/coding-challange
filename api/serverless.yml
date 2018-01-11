@@ -21,6 +21,16 @@ provider:
   profile: ${opt:profile, self:custom.defaultProfile}
   region: ${opt:region, self:custom.defaultRegion}
   deploymentBucket: serverless.${self:provider.region}.hideokamoto.deploys
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:GetItem"
+        - "dynamodb:Query"
+      Resource:
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/DepartureWeekday-inbound"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/DepartureWeekday-outbound"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/DepartureHoliday-inbound"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/DepartureHoliday-outbound"
 
 package:
   exclude:
@@ -54,13 +64,8 @@ functions:
     handler: handler.departure
     events:
       - http:
-          path: departure/{lineName}/{station}
+          path: departure/{lineName}/{station}/{lineType}/{timestamp}
           method: get
-          request:
-            parameters:
-              querystrings:
-                lineType: false
-                timestamp: false
 
 resources:
   Resources:
