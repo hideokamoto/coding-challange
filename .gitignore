@@ -1,5 +1,11 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+
+
 # dependencies
 node_modules/
 
