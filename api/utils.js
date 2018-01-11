@@ -1,5 +1,4 @@
 const BbPromise = require('bluebird')
-
 const invokeHandlers = (event, handlers) => {
   const { httpMethod, resource } = event
   if (typeof handlers[httpMethod] === 'undefined') {
