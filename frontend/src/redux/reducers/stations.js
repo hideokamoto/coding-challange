@@ -5,7 +5,7 @@ import { stationsActionTypes } from '../actions/types/stations'
 export const station = combineReducers({
   latitude,
   longitude,
-  stationName,
+  stationData,
   fetchStatus
 })
 export function fetchStatus (
@@ -77,21 +77,31 @@ export function longitude (
   }
 }
 
-export function stationName (
+export function stationData (
   state = {
-    value: ''
+    distance: '',
+    x: 0,
+    y: 0,
+    name: ''
   },
   action
 ) {
   switch (action.type) {
-    case stationsActionTypes.SET_STATION:
-      const { payload } = action
+    case stationsActionTypes.SET_STATION: {
+      const { distance, x, y, name } = action.payload.data
       return {
-        value: payload.data
+        distance,
+        x,
+        y,
+        name
       }
+    }
     case stationsActionTypes.UNSET_STATION:
       return {
-        value: ''
+        distance: '',
+        x: 0,
+        y: 0,
+        name: ''
       }
     default:
       return state
