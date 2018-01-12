@@ -10,6 +10,7 @@ export const departure = combineReducers({
 export function inbound (
   state = {
     isFetching: false,
+    hasFetched: false,
     times: []
   },
   action
@@ -18,16 +19,19 @@ export function inbound (
     case departureActionTypes.GET_INBOUND_DEPARTURE_TIME:
       return {
         isFetching: true,
+        hasFetched: false,
         times: []
       }
     case departureActionTypes.UNSET_INBOUND_DEPARTURE_TIME:
       return {
         isFetching: false,
+        hasFetched: false,
         times: []
       }
     case departureActionTypes.SET_INBOUND_DEPARTURE_TIME:
       return {
         isFetching: false,
+        hasFetched: true,
         times: action.apiResponse
       }
     default:
@@ -38,6 +42,7 @@ export function inbound (
 export function outbound (
   state = {
     isFetching: false,
+    hasFetched: false,
     times: []
   },
   action
@@ -46,16 +51,19 @@ export function outbound (
     case departureActionTypes.GET_OUTBOUND_DEPARTURE_TIME:
       return {
         isFetching: true,
+        hasFetched: false,
         times: []
       }
     case departureActionTypes.UNSET_OUTBOUND_DEPARTURE_TIME:
       return {
         isFetching: false,
+        hasFetched: false,
         times: []
       }
     case departureActionTypes.SET_OUTBOUND_DEPARTURE_TIME:
       return {
         isFetching: false,
+        hasFetched: true,
         times: action.apiResponse
       }
     default:

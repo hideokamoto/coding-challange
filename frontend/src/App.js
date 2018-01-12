@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
-import moment from 'moment'
+
 // Redux
 import { Provider } from 'react-redux'
 
 // semantic ui
-import {
-  Segment,
-  Statistic,
-  Header,
-  Divider,
-  Container,
-  Grid
-} from 'semantic-ui-react'
+import { Header, Divider, Container, Grid } from 'semantic-ui-react'
 import './App.css'
 
 // container
 import ContSelectDepartureStation from './containers/SelectDepartureStation'
+import ContDepartureTimes from './containers/ShowDepartureTime'
 
 // component
 import AppLayouts from './components/layouts/index'
@@ -53,8 +47,6 @@ class App extends Component {
     )
   }
   render () {
-    const upline = moment().format('HH:mm')
-    const downline = moment().format('HH:mm')
     return (
       <Provider store={store}>
         <AppLayouts>
@@ -68,19 +60,7 @@ class App extends Component {
                   </button>
                   <ContSelectDepartureStation />
                   <Divider />
-                  <Header as="h2">発車予定時刻</Header>
-                  <Segment inverted>
-                    <Statistic.Group inverted>
-                      <Statistic>
-                        <Statistic.Label>北大路・国際会館方面</Statistic.Label>
-                        <Statistic.Value>{upline}</Statistic.Value>
-                      </Statistic>
-                      <Statistic>
-                        <Statistic.Label>京都・竹田方面</Statistic.Label>
-                        <Statistic.Value>{downline}</Statistic.Value>
-                      </Statistic>
-                    </Statistic.Group>
-                  </Segment>
+                  <ContDepartureTimes />
                 </Grid.Column>
                 <Grid.Column>
                   <div style={{ height: '500px' }}>
