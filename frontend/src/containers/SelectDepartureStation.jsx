@@ -20,9 +20,11 @@ class ContSelectDepartureStation extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   handleSearch () {
-    const { station } = this.state
+    const { selectedStationName } = this.props
     const now = moment().format('HHmm')
-    this.props.dispatch(getDepartureTime('karasuma-line', station, now))
+    this.props.dispatch(
+      getDepartureTime('karasuma-line', selectedStationName, now)
+    )
   }
   handleChange (e, { name, value }) {
     if (name === 'station') {
