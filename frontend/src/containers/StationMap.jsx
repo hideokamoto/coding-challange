@@ -33,7 +33,7 @@ class ContStationMap extends Component {
       stationName
     } = this.props
     return (
-      <div style={{ height: '500px' }}>
+      <div style={{ height: '500px', overflow: 'hidden' }}>
         <StationMapRow isFetching={isFetching} hasFetched={hasFetched}>
           <SimpleMap
             center={{ lat, lng: long }}

@@ -1,32 +1,37 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
+import React from 'react'
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>
-
-class SimpleMap extends Component {
-  static defaultProps = {
-    zoom: 11
-  }
-  render () {
-    if (this.props.timestamp === 0) return <div />
-    return (
-      <GoogleMapReact
-        defaultCenter={this.props.center}
-        defaultZoom={this.props.zoom}
-      >
-        <AnyReactComponent
-          lat={this.props.center.lat}
-          lng={this.props.center.lng}
-          text={'現在位置'}
-        />
-        <AnyReactComponent
-          lat={this.props.station.lat}
-          lng={this.props.station.lng}
-          text={this.props.station.name}
-        />
-      </GoogleMapReact>
-    )
-  }
+const StationMarker = props => {
+  if (!props.name) return null
+  const station = [props.lat, props.lng]
+  return (
+    <Marker position={station}>
+      <Popup>
+        <span>{props.name}</span>
+      </Popup>
+    </Marker>
+  )
+}
+const SimpleMap = props => {
+  const center = [props.center.lat, props.center.lng]
+  return (
+    <Map center={center} zoom={13}>
+      <TileLayer
+        url="http://tile.openstreetmap.jp/{z}/{x}/{y}.png"
+        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+      />
+      <Marker position={center}>
+        <Popup>
+          <span>現在位置</span>
+        </Popup>
+      </Marker>
+      <StationMarker
+        lat={props.station.lat}
+        lng={props.station.lng}
+        name={props.station.name}
+      />
+    </Map>
+  )
 }
 
 export default SimpleMap
