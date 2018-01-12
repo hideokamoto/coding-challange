@@ -22,16 +22,18 @@ export function selectedStationName (state = '', action) {
 export function fetchStatus (
   state = {
     isFetching: false,
-    hasFetched: false
+    hasFetched: false,
+    errorMessage: ''
   },
   action
 ) {
   switch (action.type) {
     case stationsActionTypes.UPDATE_FETCH_STATUS:
-      const { isFetching, hasFetched } = action.payload
+      const { isFetching, hasFetched, errorMessage } = action.payload
       return {
         isFetching,
-        hasFetched
+        hasFetched,
+        errorMessage
       }
     default:
       return state
@@ -99,7 +101,9 @@ export function stationData (
 ) {
   switch (action.type) {
     case stationsActionTypes.SET_STATION: {
-      const { distance, x, y, name } = action.payload.data
+      const { data } = action.payload
+      if (Object.keys(data).length === 0) return state
+      const { distance, x, y, name } = data
       return {
         distance,
         long: x,

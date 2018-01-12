@@ -46,13 +46,15 @@ export function unsetLatLong () {
 
 export function updateFetchStatus (
   isFetching: boolean = false,
-  hasFetched: boolean = false
+  hasFetched: boolean = false,
+  errorMessage: string = ''
 ) {
   return {
     type: stationsActionTypes.UPDATE_FETCH_STATUS,
     payload: {
       isFetching,
-      hasFetched
+      hasFetched,
+      errorMessage
     }
   }
 }

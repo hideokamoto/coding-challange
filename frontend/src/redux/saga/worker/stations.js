@@ -1,8 +1,6 @@
 import { jsonpGet } from './utils'
 
 export function getStation (lat, long) {
-  lat = 35
-  long = 135.76
   const api = `http://express.heartrails.com/api/json?method=getStations&y=${lat}&x=${long}&jsonp=getStation`
   return jsonpGet(api, 'getStation')
 }

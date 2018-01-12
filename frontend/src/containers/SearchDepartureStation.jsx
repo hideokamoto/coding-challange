@@ -17,6 +17,9 @@ class ContSearchDepartureStation extends Component {
     this.props.dispatch(findStation())
   }
   render () {
+    if (!('geolocation' in navigator)) {
+      return <p>位置情報サービスが利用できないブラウザです。</p>
+    }
     return (
       <Form>
         <Form.Field>

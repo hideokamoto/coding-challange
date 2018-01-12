@@ -42,10 +42,10 @@ export function * runFindStationByGeo () {
     yield put(actions.updateSelectedStationName(selectedStationName))
     const now = moment().format('HHmm')
     yield put(getDepartureTime('karasuma-line', selectedStationName, now))
+    yield put(actions.updateFetchStatus(false, true))
   } catch (e) {
     console.log(e)
     yield put(actions.setStation({}))
-  } finally {
-    yield put(actions.updateFetchStatus(false, true))
+    yield put(actions.updateFetchStatus(false, true, e.message))
   }
 }

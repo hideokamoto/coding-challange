@@ -30,11 +30,16 @@ class ContStationMap extends Component {
       hasFetched,
       stationLat,
       stationLong,
-      stationName
+      stationName,
+      errorMessage
     } = this.props
     return (
       <div style={{ height: '500px' }}>
-        <StationMapRow isFetching={isFetching} hasFetched={hasFetched}>
+        <StationMapRow
+          isFetching={isFetching}
+          hasFetched={hasFetched}
+          errorMessage={errorMessage}
+        >
           <SimpleMap
             center={{ lat, lng: long }}
             station={{ lat: stationLat, lng: stationLong, name: stationName }}
@@ -55,6 +60,7 @@ ContStationMap.propTypes = {
   stationLat: PropTypes.number.isRequired,
   stationLong: PropTypes.number.isRequired,
   stationName: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   timestamp: PropTypes.number
 }
 ContStationMap.defaultProps = {
@@ -64,14 +70,15 @@ ContStationMap.defaultProps = {
 function mapStateToProps (state) {
   const stationState = state.station
   const { fetchStatus } = stationState
-  const { isFetching, hasFetched } = fetchStatus
+  const { isFetching, hasFetched, errorMessage } = fetchStatus
   const geo = getUsersGeoLocation(stationState)
   const station = getStationData(stationState)
   return {
     ...geo,
     ...station,
     isFetching,
-    hasFetched
+    hasFetched,
+    errorMessage
   }
 }
 export default connect(mapStateToProps)(ContStationMap)
