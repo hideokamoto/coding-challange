@@ -39,11 +39,17 @@ class App extends Component {
             <Grid columns={2} celled="internally">
               <Grid.Row>
                 <Grid.Column>
-                  <Header as="h2">近くの烏丸線の駅を探す</Header>
-                  <ContSearchDepartureStation />
+                  <Header as="h2">直近の発車時間を調べる</Header>
                   <Divider />
-                  <Header as="h2">駅名から探す</Header>
+                  <Header as="h3">駅名から探す</Header>
                   <ContSelectDepartureStation />
+                  <Header as="h3">現在位置から探す</Header>
+                  <p>
+                    <small>
+                      1km以内に最寄駅がある場合、最も近い地下鉄烏丸線の駅を表示します。
+                    </small>
+                  </p>
+                  <ContSearchDepartureStation />
                   <Divider />
                   <ContDepartureTimes />
                 </Grid.Column>

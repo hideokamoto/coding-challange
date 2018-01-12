@@ -20,7 +20,7 @@ class ContSearchDepartureStation extends Component {
     return (
       <Form>
         <Form.Field>
-          <Button content="最寄の駅を探す" onClick={this.handleSearch} />
+          <Button content="最寄駅から探す" onClick={this.handleSearch} />
         </Form.Field>
       </Form>
     )
