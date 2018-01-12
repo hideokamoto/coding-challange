@@ -8,6 +8,7 @@ import { stationsActionTypes } from '../../actions/types/stations'
 import * as actions from '../../actions/creators/stations'
 
 // Workers
+import { getStation } from '../worker/stations'
 import { getGeoLocation } from '../worker/geo'
 
 export function * stationSaga () {
@@ -15,12 +16,18 @@ export function * stationSaga () {
 }
 
 export function * findStationByGeo () {
-  yield takeEvery(runFindStationByGeo, stationsActionTypes.FIND_STATION)
+  yield takeEvery(stationsActionTypes.FIND_STATION, runFindStationByGeo)
 }
 export function * runFindStationByGeo () {
   try {
     const geoData = yield call(getGeoLocation)
-    console.log(geoData)
+    const { lat, long, timestamp } = geoData
+    yield put(actions.setLatitude(lat, timestamp))
+    yield put(actions.setLongitude(long, timestamp))
+    // console.log(geoData)
+    // eslint-disable-next-line
+    const stations = yield call(getStation, lat, long)
+    // console.log(stations)
     yield put(actions.setStation({}))
   } catch (e) {
     console.log(e)

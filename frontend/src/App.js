@@ -9,6 +9,7 @@ import './App.css'
 
 // container
 import ContSelectDepartureStation from './containers/SelectDepartureStation'
+import ContSearchDepartureStation from './containers/SearchDepartureStation'
 import ContDepartureTimes from './containers/ShowDepartureTime'
 
 // component
@@ -24,27 +25,11 @@ const store = configureStore(initialState)
 class App extends Component {
   constructor (props) {
     super(props)
-    this.handleGetLatLong = this.handleGetLatLong.bind(this)
     this.state = {
       lat: 59.95,
       long: 30.33,
       timestamp: 0
     }
-  }
-  handleGetLatLong () {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const { coords, timestamp } = position
-        this.setState({
-          lat: coords.latitude,
-          long: coords.longitude,
-          timestamp
-        })
-      },
-      function (err) {
-        console.log(err)
-      }
-    )
   }
   render () {
     return (
@@ -55,9 +40,9 @@ class App extends Component {
               <Grid.Row>
                 <Grid.Column>
                   <Header as="h2">近くの烏丸線の駅を探す</Header>
-                  <button onClick={this.handleGetLatLong}>
-                    位置情報から探す
-                  </button>
+                  <ContSearchDepartureStation />
+                  <Divider />
+                  <Header as="h2">駅名から探す</Header>
                   <ContSelectDepartureStation />
                   <Divider />
                   <ContDepartureTimes />

@@ -8,6 +8,7 @@ import { Select, Button, Form } from 'semantic-ui-react'
 
 // Action
 import { getDepartureTime } from '../redux/actions/creators/departure'
+
 import stations from '../assets/stations'
 
 class ContSelectDepartureStation extends Component {

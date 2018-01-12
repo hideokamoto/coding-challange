@@ -9,7 +9,9 @@ export function findStation () {
 export function setStation (data: {}) {
   return {
     type: stationsActionTypes.SET_STATION,
-    data
+    payload: {
+      data
+    }
   }
 }
 export function unsetStation () {
@@ -18,20 +20,39 @@ export function unsetStation () {
   }
 }
 
-export function setLatitude (lang: number) {
+export function setLatitude (lat: number, timestamp: number) {
   return {
     type: stationsActionTypes.SET_LATITUDE,
-    lang
+    payload: {
+      lat,
+      timestamp
+    }
   }
 }
-export function setLongitude (long: number) {
+export function setLongitude (long: number, timestamp: number) {
   return {
     type: stationsActionTypes.SET_LONGITUDE,
-    long
+    payload: {
+      long,
+      timestamp
+    }
   }
 }
 export function unsetLatLong () {
   return {
     type: stationsActionTypes.UNSET_LATLONG
+  }
+}
+
+export function updateFetchStatus (
+  isFetching: boolean = false,
+  hasFetched: boolean = false
+) {
+  return {
+    type: stationsActionTypes.UPDATE_FETCH_STATUS,
+    payload: {
+      isFetching,
+      hasFetched
+    }
   }
 }
