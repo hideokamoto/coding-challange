@@ -37,8 +37,8 @@ export function * getDepartures () {
       yield put(actions.setInboundDepartureTime(inbound.body))
       yield put(actions.setOutboundDepartureTime(outbound.body))
     } catch (e) {
-      yield put(actions.setInboundDepartureTime({}))
-      yield put(actions.setOutboundDepartureTime({}))
+      yield put(actions.setInboundDepartureTime([]))
+      yield put(actions.setOutboundDepartureTime([]))
     }
   }
 }
