@@ -91,8 +91,8 @@ export function longitude (
 export function stationData (
   state = {
     distance: '',
-    x: 0,
-    y: 0,
+    long: 0,
+    lat: 0,
     name: ''
   },
   action
@@ -102,16 +102,16 @@ export function stationData (
       const { distance, x, y, name } = action.payload.data
       return {
         distance,
-        x,
-        y,
+        long: x,
+        lat: y,
         name
       }
     }
     case stationsActionTypes.UNSET_STATION:
       return {
         distance: '',
-        x: 0,
-        y: 0,
+        long: 0,
+        lat: 0,
         name: ''
       }
     default:

@@ -11,11 +11,11 @@ export function getUsersGeoLocation (station) {
 }
 export function getStationData (station) {
   const { stationData } = station
-  const { distance, x, y, name } = stationData
+  const { distance, lat, long, name } = stationData
   return {
     stationDistance: distance,
-    stationX: x,
-    stationY: y,
+    stationLat: lat,
+    stationLong: long,
     stationName: name
   }
 }

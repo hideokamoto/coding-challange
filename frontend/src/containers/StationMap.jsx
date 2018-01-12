@@ -28,16 +28,16 @@ class ContStationMap extends Component {
       timestamp,
       isFetching,
       hasFetched,
-      stationX,
-      stationY,
+      stationLat,
+      stationLong,
       stationName
     } = this.props
     return (
-      <div style={{ height: '500px', overflow: 'hidden' }}>
+      <div style={{ height: '500px' }}>
         <StationMapRow isFetching={isFetching} hasFetched={hasFetched}>
           <SimpleMap
             center={{ lat, lng: long }}
-            station={{ lat: stationX, lng: stationY, name: stationName }}
+            station={{ lat: stationLat, lng: stationLong, name: stationName }}
             timestamp={timestamp}
           />
         </StationMapRow>
@@ -52,8 +52,8 @@ ContStationMap.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   hasFetched: PropTypes.bool.isRequired,
   stationDistance: PropTypes.string.isRequired,
-  stationX: PropTypes.number.isRequired,
-  stationY: PropTypes.number.isRequired,
+  stationLat: PropTypes.number.isRequired,
+  stationLong: PropTypes.number.isRequired,
   stationName: PropTypes.string.isRequired,
   timestamp: PropTypes.number
 }

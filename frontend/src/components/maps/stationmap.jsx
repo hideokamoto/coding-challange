@@ -1,36 +1,21 @@
 import React from 'react'
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-
-const StationMarker = props => {
-  if (!props.name) return null
-  const station = [props.lat, props.lng]
-  return (
-    <Marker position={station}>
-      <Popup>
-        <span>{props.name}</span>
-      </Popup>
-    </Marker>
-  )
-}
+import GoogleMap from 'google-map-react'
+import StationMarker from './Marker'
 const SimpleMap = props => {
-  const center = [props.center.lat, props.center.lng]
+  const { station, center } = props
   return (
-    <Map center={center} zoom={13}>
-      <TileLayer
-        url="http://tile.openstreetmap.jp/{z}/{x}/{y}.png"
-        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-      />
-      <Marker position={center}>
-        <Popup>
-          <span>現在位置</span>
-        </Popup>
-      </Marker>
+    <GoogleMap
+      apiKey="AIzaSyAoF_8qD1-c0zLMv22XKLubTNbSzYB8WXU"
+      center={center}
+      zoom={props.zoom || 15}
+    >
+      <StationMarker lat={center.lat} lng={center.lng} text="現在位置" />
       <StationMarker
-        lat={props.station.lat}
-        lng={props.station.lng}
-        name={props.station.name}
+        lat={station.lat}
+        lng={station.lng}
+        text={`${station.name}駅`}
       />
-    </Map>
+    </GoogleMap>
   )
 }
 
