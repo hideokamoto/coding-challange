@@ -26,9 +26,9 @@ const App = () => (
   <Provider store={store}>
     <AppLayouts>
       <Container>
-        <Grid columns={2} celled="internally">
+        <Grid celled="internally">
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
               <Header as="h2">直近の発車時間を調べる</Header>
               <Divider />
               <Header as="h3">駅名から探す</Header>
@@ -43,7 +43,7 @@ const App = () => (
               <Divider />
               <ContDepartureTimes />
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column mobile={16} tablet={8} computer={8}>
               <ContStationMap />
             </Grid.Column>
           </Grid.Row>
