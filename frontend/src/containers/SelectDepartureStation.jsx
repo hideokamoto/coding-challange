@@ -8,15 +8,14 @@ import { Select, Button, Form } from 'semantic-ui-react'
 
 // Action
 import { getDepartureTime } from '../redux/actions/creators/departure'
+import { updateSelectedStationName } from '../redux/actions/creators/stations'
 
+// data
 import stations from '../assets/stations'
 
 class ContSelectDepartureStation extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      station: ''
-    }
     this.handleSearch = this.handleSearch.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -26,10 +25,12 @@ class ContSelectDepartureStation extends Component {
     this.props.dispatch(getDepartureTime('karasuma-line', station, now))
   }
   handleChange (e, { name, value }) {
-    this.setState({ [name]: value })
+    if (name === 'station') {
+      this.props.dispatch(updateSelectedStationName(value))
+    }
   }
   render () {
-    const { station } = this.state
+    const { selectedStationName } = this.props
     return (
       <Form>
         <Form.Field>
@@ -38,12 +39,12 @@ class ContSelectDepartureStation extends Component {
             name="station"
             placeholder="駅名を選択してください"
             options={stations}
-            value={station}
+            value={selectedStationName}
           />
         </Form.Field>
         <Form.Field>
           <Button
-            disabled={!station}
+            disabled={!selectedStationName}
             content="駅名から調べる"
             onClick={this.handleSearch}
           />
@@ -55,5 +56,10 @@ class ContSelectDepartureStation extends Component {
 ContSelectDepartureStation.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
-
-export default connect()(ContSelectDepartureStation)
+function mapStateToProps (state) {
+  const { selectedStationName } = state.station
+  return {
+    selectedStationName
+  }
+}
+export default connect(mapStateToProps)(ContSelectDepartureStation)

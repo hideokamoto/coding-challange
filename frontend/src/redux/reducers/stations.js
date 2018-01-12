@@ -6,8 +6,19 @@ export const station = combineReducers({
   latitude,
   longitude,
   stationData,
-  fetchStatus
+  fetchStatus,
+  selectedStationName
 })
+
+export function selectedStationName (state = '', action) {
+  switch (action.type) {
+    case stationsActionTypes.UPDATE_SELECTED_STATION_NAME:
+      return action.payload.name
+    default:
+      return state
+  }
+}
+
 export function fetchStatus (
   state = {
     isFetching: false,

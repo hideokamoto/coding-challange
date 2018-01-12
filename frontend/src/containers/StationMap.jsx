@@ -12,6 +12,9 @@ import {
   updateFetchStatus
 } from '../redux/actions/creators/stations'
 
+// Utils
+import { getUsersGeoLocation, getStationData } from '../utils/mapStateToProps'
+
 class ContStationMap extends Component {
   componentWillUnmount () {
     const { dispatch } = this.props
@@ -56,27 +59,6 @@ ContStationMap.propTypes = {
 }
 ContStationMap.defaultProps = {
   timestamp: 0
-}
-function getUsersGeoLocation (station) {
-  const { latitude, longitude } = station
-  const timestamp = latitude.timestamp
-    ? latitude.timestamp
-    : longitude.timestamp || 0
-  return {
-    lat: latitude.value,
-    long: longitude.value,
-    timestamp
-  }
-}
-function getStationData (station) {
-  const { stationData } = station
-  const { distance, x, y, name } = stationData
-  return {
-    stationDistance: distance,
-    stationX: x,
-    stationY: y,
-    stationName: name
-  }
 }
 
 function mapStateToProps (state) {

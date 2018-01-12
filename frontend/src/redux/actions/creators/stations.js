@@ -56,3 +56,12 @@ export function updateFetchStatus (
     }
   }
 }
+
+export function updateSelectedStationName (name: string = '') {
+  return {
+    type: stationsActionTypes.UPDATE_SELECTED_STATION_NAME,
+    payload: {
+      name
+    }
+  }
+}
