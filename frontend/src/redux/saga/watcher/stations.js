@@ -20,6 +20,7 @@ export function * findStationByGeo () {
 }
 export function * runFindStationByGeo () {
   try {
+    yield put(actions.updateFetchStatus(true))
     const geoData = yield call(getGeoLocation)
     const { lat, long, timestamp } = geoData
     yield put(actions.setLatitude(lat, timestamp))
@@ -32,5 +33,7 @@ export function * runFindStationByGeo () {
   } catch (e) {
     console.log(e)
     yield put(actions.setStation({}))
+  } finally {
+    yield put(actions.updateFetchStatus(false, true))
   }
 }
