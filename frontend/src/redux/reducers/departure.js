@@ -7,6 +7,10 @@ export const departure = combineReducers({
   outbound
 })
 
+export const getApiResponse = apiResponse => {
+  return Object.keys(apiResponse).length === 0 ? [] : apiResponse
+}
+
 export function inbound (
   state = {
     isFetching: false,
@@ -32,7 +36,7 @@ export function inbound (
       return {
         isFetching: false,
         hasFetched: true,
-        times: action.apiResponse
+        times: getApiResponse(action.apiResponse)
       }
     default:
       return state
@@ -60,12 +64,13 @@ export function outbound (
         hasFetched: false,
         times: []
       }
-    case departureActionTypes.SET_OUTBOUND_DEPARTURE_TIME:
+    case departureActionTypes.SET_OUTBOUND_DEPARTURE_TIME: {
       return {
         isFetching: false,
         hasFetched: true,
-        times: action.apiResponse
+        times: getApiResponse(action.apiResponse)
       }
+    }
     default:
       return state
   }
