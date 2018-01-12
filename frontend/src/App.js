@@ -11,10 +11,10 @@ import './App.css'
 import ContSelectDepartureStation from './containers/SelectDepartureStation'
 import ContSearchDepartureStation from './containers/SearchDepartureStation'
 import ContDepartureTimes from './containers/ShowDepartureTime'
+import ContStationMap from './containers/StationMap'
 
 // component
 import AppLayouts from './components/layouts/index'
-import SimpleMap from './components/maps/stationmap'
 
 // Store
 import { configureStore } from './redux/stores/index'
@@ -48,12 +48,7 @@ class App extends Component {
                   <ContDepartureTimes />
                 </Grid.Column>
                 <Grid.Column>
-                  <div style={{ height: '500px' }}>
-                    <SimpleMap
-                      center={{ lat: this.state.lat, lng: this.state.long }}
-                      timestamp={this.state.timestamp}
-                    />
-                  </div>
+                  <ContStationMap />
                 </Grid.Column>
               </Grid.Row>
             </Grid>
