@@ -12,6 +12,12 @@ function dispatchReturnContent (props) {
     switch (errorMessage) {
       case 'User denied Geolocation':
         return <p>位置情報機能が許可されていません。</p>
+      case 'station not found':
+        return (
+          <p>
+            近くに駅が見当たりませんでした。場所を変えて再度お試しください。
+          </p>
+        )
       default:
         return <p>{errorMessage}</p>
     }
