@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -20,7 +21,8 @@ class ContSelectDepartureStation extends Component {
   }
   handleSearch () {
     const { station } = this.state
-    this.props.dispatch(getDepartureTime('karasuma-line', station, 500))
+    const now = moment().format('HHmm')
+    this.props.dispatch(getDepartureTime('karasuma-line', station, now))
   }
   handleChange (e, { name, value }) {
     this.setState({ [name]: value })
