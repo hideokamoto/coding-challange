@@ -1,16 +1,17 @@
-# 京都市営地下鉄発車時間データ
+# 京都市営地下鉄発車時間API
 
 ## Getting started
 
 ```
+$ npm i -g serverless
 $ git clone git@github.com:hideokamoto/coding-challange.git
 $ npm install
-$ cd frontend
+$ cd api
 $ npm install
 ```
 
-## Running as local
+## Deploy to AWS
 
 ```
- $ npm start
+ $ sls deploy
 ``

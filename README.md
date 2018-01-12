@@ -18,3 +18,6 @@ via: https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge
 
 - 京都市営地下鉄時刻表，京都市，クリエイティブ・コモンズ・ライセンス表示4.0国際  
 （http://creativecommons.org/licenses/by/4.0/deed.ja (link is external)）
+
+### 京都市営地下鉄位置データ
+http://www.odekakemap.com/station/

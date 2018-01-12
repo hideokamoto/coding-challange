@@ -1,8 +1,15 @@
-## DB Resources
+# DB Resources
 APIなどで利用するデータをここで管理する
 
-### DynamoDB
+## DynamoDB
 各列車の発着時間を保存
 
-### Amazon Elasticsearch Service
-各駅の位置情報を保存
+### deploy
+
+```
+$ npm i -g serverless
+$ git clone git@github.com:hideokamoto/coding-challange.git
+$ cd databases
+$ terraform init
+$ terraform apply
+```
