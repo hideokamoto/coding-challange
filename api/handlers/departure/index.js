@@ -19,19 +19,6 @@ module.exports = {
       const departure = new Departure(station, date)
       const timestamp = moment(date).format('HHmm')
       return departure.getDeparetureTime(timestamp, lineType)
-    },
-    '/departure/{lineName}/{station}/{lineType}/{timestamp}': event => {
-      const { lineName, station, lineType, timestamp } = event.pathParameters
-      if (lineName !== 'karasuma-line') {
-        return new Error("Invalid lineName. Only support 'karasuma-line'.")
-      }
-      const departure = new Departure(station)
-      if (lineType !== 'inbound' && lineType !== 'outbound') {
-        return new Error(
-          `${lineType} is invalid. Only support 'inbound' or 'outbound'.`
-        )
-      }
-      return departure.getDeparetureTime(timestamp, lineType)
     }
   }
 }
