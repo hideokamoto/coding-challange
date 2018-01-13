@@ -4,7 +4,9 @@ module.exports = {
   GET: {
     '/departure/{lineName}/{station}/{lineType}/{timestamp}': event => {
       const { lineName, station, lineType, timestamp } = event.pathParameters
-      if (lineName !== 'karasuma-line') { return new Error("Invalid lineName. Only support 'karasuma-line'.") }
+      if (lineName !== 'karasuma-line') {
+        return new Error("Invalid lineName. Only support 'karasuma-line'.")
+      }
       const departure = new Departure(station)
       if (lineType !== 'inbound' && lineType !== 'outbound') {
         return new Error(

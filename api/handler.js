@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const { exec } = require('./utils')
 
 module.exports.station = (event, context, callback) =>
