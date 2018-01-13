@@ -17,51 +17,6 @@ const importJsonToDynamoDB = (json) => {
 */
 
 const loadJsonFile = (basePath, filePath) => require(`${basePath}/${filePath}`)
-const createImportParamItem = data => {
-  const items = {}
-  Object.keys(data).map(key => {
-    if (!data[key]) return
-    items['station_name'] = {
-      S: key
-    }
-    if (key === 'distination' || key === 'from') {
-      items[key] = {
-        S: data[key]
-      }
-    } else {
-      const timeObj = data[key].split(':')
-      const time = `${timeObj[0]}${timeObj[1]}`
-      items['departure_times'] = {
-        N: Number(time)
-      }
-    }
-  })
-  return {
-    PutRequest: {
-      Item: items
-    }
-  }
-}
-
-const createImportParams = (tableName, json) => {
-  const items = json.map(data => createImportParamItem(data))
-  let key = 1
-  const params = []
-  let subItems = []
-  items.map(item => {
-    if (key === 25) {
-      params.push(subItems)
-      subItems = []
-      key = 1
-    } else {
-      subItems.push(item)
-      key += 1
-    }
-  })
-  params.push(subItems)
-  return params
-}
-
 // const createImportQueries =
 
 const importToDynamoDb = param => {
@@ -77,7 +32,7 @@ const prepare = filePath => {
       const json = loadJsonFile(basePath, filePath)
       const item = new ImportItem(filePath)
       const tableName = item.getTableName()
-      const params = createImportParams(tableName, json)
+      const params = item.createImportParams(tableName, json)
       resolve(params)
     } catch (e) {
       reject(e)
