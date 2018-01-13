@@ -58,3 +58,16 @@ const exec = (handlersPath, event, callback) => {
 module.exports.invokeHandlers = invokeHandlers
 module.exports.responseBuilder = responseBuilder
 module.exports.exec = exec
+
+/**
+ * Get Date object by timezone
+ * via: http://jeana.hatenablog.jp/entry/2017/02/05/232943
+ *
+ * @param {number} timezoneoffset 時差
+ * @return {Object} Date object
+ */
+module.exports.getDateByTimezone = (timezoneoffset = -9) => {
+  return new Date(
+    Date.now() - (timezoneoffset * 60 - new Date().getTimezoneOffset()) * 60000
+  )
+}

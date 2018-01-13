@@ -64,7 +64,7 @@ functions:
     handler: handler.departure
     events:
       - http:
-          path: departure/{lineName}/{station}/{lineType}/{timestamp}
+          path: departure/{lineName}/{station}/{lineType}
           method: get
 
 resources:
