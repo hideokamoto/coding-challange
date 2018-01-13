@@ -25,3 +25,11 @@ const filterJsonFile = (basePath, file) => {
 const filterCsvFile = (basePath, file) => {
   return fs.statSync(`${basePath}/${file}`).isFile() && /.*\.csv$/.test(file)
 }
+
+module.exports.sleep = time => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}

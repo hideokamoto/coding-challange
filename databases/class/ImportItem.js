@@ -1,6 +1,7 @@
 const TableName = require('./tableName')
 const _ = require('lodash')
 const AWS = require('aws-sdk')
+const { sleep } = require('../utils')
 class ImportItem {
   constructor (filePath) {
     this.filePath = filePath
@@ -83,7 +84,7 @@ class ImportItem {
   }
   importToDynamoDb (param) {
     const query = this.createImportQuery(param)
-    return this.dynamoDB.batchWriteItem(query).promise()
+    return sleep(1000).then(() => this.dynamoDB.batchWriteItem(query).promise())
   }
 }
 
