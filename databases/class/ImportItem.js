@@ -83,9 +83,6 @@ class ImportItem {
   }
   importToDynamoDb (param) {
     const query = this.createImportQuery(param)
-    query.RequestItems['DepartureWeekday-inbound'].map(item =>
-      console.log(item.PutRequest)
-    )
     return this.dynamoDB.batchWriteItem(query).promise()
   }
 }

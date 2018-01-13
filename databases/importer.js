@@ -1,5 +1,5 @@
 const ImportItem = require('./class/ImportItem')
-// const { convertBaseData } = require('./utils')
+const { convertBaseData } = require('./utils')
 const basePath = './json'
 
 /*
@@ -33,11 +33,7 @@ const importWorker = filePath => {
     }
   })
 }
-/**/
-importWorker('karasuma-weekday-inbound.json').then(result =>
-  console.log(result)
+
+convertBaseData(basePath, 'json').then(fileList =>
+  Promise.all(fileList.map(importWorker))
 )
-/*
-convertBaseData(basePath, 'json')
-  .then(fileList => Promise.all(fileList.map(importWorker)))
-/**/
