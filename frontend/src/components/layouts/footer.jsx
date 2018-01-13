@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 // Semantic UI
-import { Divider, Container } from "semantic-ui-react";
+import { Divider, Container } from 'semantic-ui-react'
 
 // Components
 
@@ -20,7 +20,7 @@ const AppFooter = props => {
               href="http://creativecommons.org/licenses/by/4.0/deed.ja"
             >
               http://creativecommons.org/licenses/by/4.0/deed.ja
-            </a>{" "}
+            </a>{' '}
             (link is external)
           </li>
           <li>
@@ -31,13 +31,24 @@ const AppFooter = props => {
               href="http://www.odekakemap.com/station/"
             >
               http://www.odekakemap.com/station/
-            </a>{" "}
+            </a>{' '}
+            (link is external)
+          </li>
+          <li>
+            HeartRails Express API <br />
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="http://express.heartrails.com/api.html"
+            >
+              http://express.heartrails.com/api.html
+            </a>{' '}
             (link is external)
           </li>
         </ul>
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default AppFooter;
+export default AppFooter
