@@ -16,23 +16,16 @@ export function * departureSaga () {
 
 export function * getDepartures () {
   while (true) {
-    const { lineName, station, timestamp } = yield take(
+    const { lineName, station } = yield take(
       departureActionTypes.GET_DEPARTURE_TIMES
     )
     try {
-      const inbound = yield call(
-        getDepartureTime,
-        lineName,
-        station,
-        'inbound',
-        timestamp
-      )
+      const inbound = yield call(getDepartureTime, lineName, station, 'inbound')
       const outbound = yield call(
         getDepartureTime,
         lineName,
         station,
-        'outbound',
-        timestamp
+        'outbound'
       )
       yield put(actions.setInboundDepartureTime(inbound.body))
       yield put(actions.setOutboundDepartureTime(outbound.body))

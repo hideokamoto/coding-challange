@@ -4,9 +4,8 @@ import { api, get } from './utils'
 export function getDepartureTime (
   lineName: string,
   station: string,
-  lineType: string,
-  timestamp: number
+  lineType: string
 ) {
-  const path = `${api}departure/${lineName}/${station}/${lineType}/${timestamp}`
+  const path = `${api}departure/${lineName}/${station}/${lineType}`
   return get(path)
 }

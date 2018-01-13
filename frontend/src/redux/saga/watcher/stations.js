@@ -1,7 +1,6 @@
 /* eslint-disable no-constant-condition, no-use-before-define */
 import { call, put, fork, takeEvery } from 'redux-saga/effects'
 import _ from 'lodash'
-import moment from 'moment'
 
 // Action types
 import { stationsActionTypes } from '../../actions/types/stations'
@@ -40,8 +39,7 @@ export function * runFindStationByGeo () {
       ? selectedStation[0].value
       : ''
     yield put(actions.updateSelectedStationName(selectedStationName))
-    const now = moment().format('HHmm')
-    yield put(getDepartureTime('karasuma-line', selectedStationName, now))
+    yield put(getDepartureTime('karasuma-line', selectedStationName))
     yield put(actions.updateFetchStatus(false, true))
   } catch (e) {
     console.log(e)

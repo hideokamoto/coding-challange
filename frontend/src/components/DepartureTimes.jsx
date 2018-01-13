@@ -18,7 +18,9 @@ function parseDepartureTime (time) {
 function getDepartureTime (data) {
   if (!data) return '終了しました'
   const timeObj = parseDepartureTime(String(data.departure_timestamp))
-  if (timeObj instanceof Error) { return '取得に失敗しました。もう一度お試しください。' }
+  if (timeObj instanceof Error) {
+    return '取得に失敗しました。もう一度お試しください。'
+  }
   return moment(`${timeObj.hour}-${timeObj.minutes}`, 'HH-mm').format('HH:mm')
 }
 

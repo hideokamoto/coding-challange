@@ -1,31 +1,24 @@
 /* @flow */
 import { departureActionTypes } from '../types/departure'
 
-export function getDepartureTime (
-  lineName: string,
-  station: string,
-  timestamp: number = 0
-) {
+export function getDepartureTime (lineName: string, station: string) {
   return {
     type: departureActionTypes.GET_DEPARTURE_TIMES,
     lineName,
-    station,
-    timestamp
+    station
   }
 }
 
 export function getInboundDepartureTime (
   lineName: string,
   station: string,
-  lineType: string,
-  timestamp: number = 0
+  lineType: string
 ) {
   return {
     type: departureActionTypes.GET_INBOUND_DEPARTURE_TIME,
     lineName,
     station,
-    lineType,
-    timestamp
+    lineType
   }
 }
 export function setInboundDepartureTime (apiResponse: object) {
@@ -43,15 +36,13 @@ export function unsetInboundDepartureTime () {
 export function getOutboundDepartureTime (
   lineName: string,
   station: string,
-  lineType: string,
-  timestamp: number = 0
+  lineType: string
 ) {
   return {
     type: departureActionTypes.GET_OUTBOUND_DEPARTURE_TIME,
     lineName,
     station,
-    lineType,
-    timestamp
+    lineType
   }
 }
 export function setOutboundDepartureTime (apiResponse: object) {

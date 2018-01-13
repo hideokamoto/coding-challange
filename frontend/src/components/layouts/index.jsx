@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 // component
-import Header from "./header";
-import Footer from "./footer";
+import Header from './header'
+import Footer from './footer'
 
 const AppLayouts = props => {
   return (
@@ -10,7 +10,7 @@ const AppLayouts = props => {
       <main>{props.children}</main>
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default AppLayouts;
+export default AppLayouts
