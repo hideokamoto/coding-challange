@@ -2,20 +2,6 @@ const ImportItem = require('./class/ImportItem')
 const { convertBaseData } = require('./utils')
 const basePath = './json'
 
-/*
-const importJsonToDynamoDB = (json) => {
-  return new Promise((resolve, reject) => {
-    try {
-      const json = loadJsonFile(basePath, filePath)
-      console.log(json)
-      resolve(filePath)
-    } catch (e) {
-      reject(e)
-    }
-  })
-}
-*/
-
 const loadJsonFile = (basePath, filePath) => require(`${basePath}/${filePath}`)
 
 const importWorker = filePath => {
