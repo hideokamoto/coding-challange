@@ -1,40 +1,62 @@
 const TableName = require('./tableName')
+const _ = require('lodash')
+const AWS = require('aws-sdk')
 class ImportItem {
   constructor (filePath) {
     this.filePath = filePath
     const tableName = new TableName()
     this.tableName = tableName.getTableName(filePath)
+    this.params = []
+    this.dynamoDB = new AWS.DynamoDB()
   }
   getTableName () {
     return this.tableName
   }
   createImportParamItem (data) {
-    const items = {}
+    let distination = ''
     Object.keys(data).map(key => {
       if (!data[key]) return
-      items['station_name'] = {
-        S: key
-      }
-      if (key === 'distination' || key === 'from') {
-        items[key] = {
-          S: data[key]
-        }
-      } else {
-        const timeObj = data[key].split(':')
-        const time = `${timeObj[0]}${timeObj[1]}`
-        items['departure_times'] = {
-          N: Number(time)
-        }
+      if (key === 'distination') {
+        distination = data[key]
       }
     })
-    return {
-      PutRequest: {
-        Item: items
+    if (!distination) return
+
+    const items = Object.keys(data).map(key => {
+      const trainData = {
+        distination: {
+          S: distination
+        }
       }
-    }
+      if (key !== 'distination' && key !== 'from') {
+        trainData['station_name'] = {
+          S: key
+        }
+        if (!data[key]) return false
+        const timeObj = data[key].split(':')
+        const time = `${timeObj[0]}${timeObj[1]}`
+        trainData['departure_timestamp'] = {
+          N: time
+        }
+        return {
+          PutRequest: {
+            Item: trainData
+          }
+        }
+      } else {
+        return false
+      }
+    })
+    return _.compact(items)
   }
   createImportParams (tableName, json) {
-    const items = json.map(data => this.createImportParamItem(data))
+    const lists = json.map(data => this.createImportParamItem(data))
+    const items = []
+    lists.map(list => {
+      list.map(data => {
+        items.push(data)
+      })
+    })
     let key = 1
     const params = []
     let subItems = []
@@ -50,6 +72,21 @@ class ImportItem {
     })
     params.push(subItems)
     return params
+  }
+  createImportQuery (param) {
+    const query = {
+      RequestItems: {
+        [this.tableName]: param
+      }
+    }
+    return query
+  }
+  importToDynamoDb (param) {
+    const query = this.createImportQuery(param)
+    query.RequestItems['DepartureWeekday-inbound'].map(item =>
+      console.log(item.PutRequest)
+    )
+    return this.dynamoDB.batchWriteItem(query).promise()
   }
 }
 

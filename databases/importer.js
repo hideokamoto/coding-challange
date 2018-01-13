@@ -17,44 +17,27 @@ const importJsonToDynamoDB = (json) => {
 */
 
 const loadJsonFile = (basePath, filePath) => require(`${basePath}/${filePath}`)
-// const createImportQueries =
 
-const importToDynamoDb = param => {
-  return new Promise(resolve => {
-    console.log(param)
-    resolve(param)
-  })
-}
-
-const prepare = filePath => {
+const importWorker = filePath => {
   return new Promise((resolve, reject) => {
     try {
       const json = loadJsonFile(basePath, filePath)
       const item = new ImportItem(filePath)
       const tableName = item.getTableName()
       const params = item.createImportParams(tableName, json)
-      resolve(params)
+      return Promise.all(params.map(item.importToDynamoDb.bind(item)))
+        .then(data => resolve(data))
+        .catch(err => reject(err))
     } catch (e) {
       reject(e)
     }
   })
 }
-
-// createImportParams
-const importWorker = filePath => {
-  return new Promise((resolve, reject) => {
-    try {
-      return prepare(filePath).then(params =>
-        Promise.all(params.map(importToDynamoDb))
-      )
-    } catch (e) {
-      reject(e)
-    }
-  })
-}
-
-importWorker('karasuma-holiday-inbound.json')
+/**/
+importWorker('karasuma-weekday-inbound.json').then(result =>
+  console.log(result)
+)
 /*
 convertBaseData(basePath, 'json')
   .then(fileList => Promise.all(fileList.map(importWorker)))
-*/
+/**/

@@ -15,5 +15,9 @@
     "js-yaml": "^3.10.0",
     "node-csv": "^0.1.2",
     "path": "^0.12.7"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.181.0",
+    "lodash": "^4.17.4"
   }
 }
