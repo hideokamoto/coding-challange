@@ -1,6 +1,7 @@
 const fs = require('fs')
 const iconv = require('iconv-lite')
 const csv = require('csv')
+const { convertBaseData } = require('./utils')
 
 const columns = {
   '行先（終着）': 'distination',
@@ -64,20 +65,6 @@ function createJsonFile (path, data) {
   const fileName = path.split('.csv')[0]
   fs.writeFile(`./json/${fileName}.json`, JSON.stringify(data, null, '    '))
   return true
-}
-
-function convertBaseData (basePath = './base') {
-  return new Promise((resolve, reject) => {
-    fs.readdir(basePath, (err, files) => {
-      if (err) return reject(err)
-      const fileList = files.filter(file => {
-        return (
-          fs.statSync(`${basePath}/${file}`).isFile() && /.*\.csv$/.test(file)
-        ) // 絞り込み
-      })
-      resolve(fileList)
-    })
-  })
 }
 
 convertBaseData()
