@@ -46,20 +46,6 @@ package:
     - coverage/**
 
 functions:
-  station:
-    handler: handler.station
-    events:
-      - http:
-          path: station/{name}
-          method: get
-      - http:
-          path: station/search
-          method: get
-          request:
-            parameters:
-              querystrings:
-                lat: true
-                long: true
   departure:
     handler: handler.departure
     events:
@@ -69,9 +55,6 @@ functions:
 
 resources:
   Resources:
-    StationLogGroup:
-      Properties:
-        RetentionInDays: ${self:custom.logRetentionInDays.${self:custom.stage}, self:custom.logRetentionInDays.default}
     DepartureLogGroup:
       Properties:
         RetentionInDays: ${self:custom.logRetentionInDays.${self:custom.stage}, self:custom.logRetentionInDays.default}
